@@ -3,9 +3,26 @@
 <head>
 </head>
 <body>
-<div id="rootElement">
-    Hello World!
+
+<div class="container">
+    <div class="row homeWrapper">
+        <div id="app">
+            <button v-if="!cards" v-once v-on:click="showCards()" class="btn btn-notifications">{{ buttonText }}</button>
+            <div v-if="cards">
+                <div v-for="card in notificationCards">
+                    <notification-card v-bind:user="card.user"
+                                       v-bind:type="card.type"
+                                       v-bind:description="card.description"
+                                       v-bind:requires-decision="false"
+                                       v-bind:title="card.title">
+                    </notification-card>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 
 <script src="bundle.js"></script>
 </body>
