@@ -1,32 +1,25 @@
 <!doctype html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=10, user-scalable=yes, width=device-width">
-
+    <title>Cards!</title>
     <link rel="stylesheet" href="main.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
 <body>
 
 <div class="container">
     <div class="row homeWrapper">
-        <div id="app">
-            <button v-if="!cards" v-once v-on:click="showCards()" class="btn btn-notifications">{{ buttonText }}</button>
-            <div v-if="cards">
-                <div v-for="card in notificationCards">
-                    <notification-card v-bind:user="card.user"
-                                       v-bind:type="card.type"
-                                       v-bind:description="card.description"
-                                       v-bind:requires-decision="false"
-                                       v-bind:title="card.title">
-                    </notification-card>
-                </div>
-            </div>
+        <div v-cloak id="app">
+            <app></app>
         </div>
     </div>
 </div>
 
+<div class="footer"> Built with &hearts; by Nora</div>
 
-
+<script src="http://hammerjs.github.io/dist/hammer.min.js"></script>
 <script src="bundle.js"></script>
 </body>
 </html>

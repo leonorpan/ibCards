@@ -3311,3 +3311,39 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
 @media print {
   .hidden-print {
     display: none !important; } }
+* {
+  box-sizing: border-box; }
+
+body {
+  background: #EDFAF8; }
+
+[v-cloak] {
+  display: none; }
+
+.footer {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  text-align: center; }
+
+.homeWrapper {
+  height: 100vh;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
+
+.button:focus, .button-min:focus {
+  box-shadow: none;
+  outline: none; }
+
+.button:active, .button:hover, .button-min:active, .button-min:hover {
+  opacity: 0.6;
+  cursor: pointer; }
+
+input:focus {
+  box-shadow: none;
+  outline: none; }
