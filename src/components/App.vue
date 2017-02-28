@@ -1,34 +1,36 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
-    <transition name="stack">
-        <div v-if="notificationCards && notificationCards.length > 0" class="cards">
-            <transition-group tag="div" class="cardTransition">
-                <notification-card
-                        v-for="(card, index) in notificationCards"
-                        :key="index"
-                        :user="card.user"
-                        :description="card.description"
-                        :requires-decision="card.requiresDecision"
-                        :position="index"
-                        v-on:confirm="confirmCard"
-                        v-on:reject="rejectCard"
-                        v-on:bringToTop="bringToTop(index)"
-                        v-on:swipedCard="swipeCard"
-                        :length="notificationCards.length"
-                        :title="card.title">
-                </notification-card>
-            </transition-group>
-        </div>
-        <div v-else style="text-align: center; min-height: 200px;">
-            <div class="cardNumber">
-                <button class="button-min" v-on:click="cards--">-</button>
-                <span>{{cards}}</span>
-                <button class="button-min" v-on:click="cards++">+</button>
+    <div class="wrapper">
+        <transition name="stack">
+            <div v-if="notificationCards && notificationCards.length > 0" class="cards" key="cards">
+                <transition-group tag="div" class="cardTransition">
+                    <notification-card
+                            v-for="(card, index) in notificationCards"
+                            :key="index"
+                            :user="card.user"
+                            :description="card.description"
+                            :requires-decision="card.requiresDecision"
+                            :position="index"
+                            v-on:confirm="confirmCard"
+                            v-on:reject="rejectCard"
+                            v-on:bringToTop="bringToTop(index)"
+                            v-on:swipedCard="swipeCard"
+                            :length="notificationCards.length"
+                            :title="card.title">
+                    </notification-card>
+                </transition-group>
             </div>
-            <button v-once v-on:click="showCards()" class="btn button">{{ buttonText }}</button>
-            <p v-if="cards < 0">Ehm, I cannot show a positive number of cards :)</p>
-            <p v-if="notificationCards">Confirmed: {{confirmed}} Rejected: {{rejected}}</p>
-        </div>
-    </transition>
+            <div v-else class="info" key="info">
+                <div class="cardNumber">
+                    <button class="button-min" v-on:click="cards--">-</button>
+                    <span>{{cards}}</span>
+                    <button class="button-min" v-on:click="cards++">+</button>
+                </div>
+                <button v-once v-on:click="showCards()" class="btn button">{{ buttonText }}</button>
+                <p v-if="cards < 0">Ehm, I cannot show a positive number of cards :)</p>
+                <p v-if="notificationCards">Confirmed: {{confirmed}} Rejected: {{rejected}}</p>
+            </div>
+        </transition>
+    </div>
 </template>
 
 <script>
@@ -96,6 +98,36 @@
     @import '../scss/_colors.scss';
     @import '../scss/_swing.scss';
 
+    .wrapper {
+        position: relative;
+        width: 300px;
+        height: 300px;
+    }
+
+    .cards {
+        width: 300px;
+        height: 300px;
+        opacity: 1;
+        position:absolute;
+    }
+
+    .info {
+        opacity: 1;
+        text-align: center;
+        width: 300px;
+        height: 200px;
+        position:absolute;
+    }
+
+    .stack-enter-active, .stack-leave-active {
+        opacity: 0;
+        transition: all .2s ease-out;
+    }
+    .stack-enter, .stack-leave{
+        transition: all .3s ease-in;
+        opacity: 0;
+    }
+
     .button {
         background-color: $ibBlue;
         text-transform: uppercase;
@@ -103,11 +135,6 @@
         min-width: 180px;
         min-height: 50px;
         border-radius: 0;
-    }
-
-    .cards {
-        width: 300px;
-        height: 300px;
     }
 
     .cardNumber {
