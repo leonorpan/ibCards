@@ -1,6 +1,6 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
     <div v-if="notificationCards && notificationCards.length > 0" class="cards">
-        <transition-group name="fade" tag="div" class="cardTransition">
+        <transition-group tag="div" class="cardTransition">
             <notification-card
                     v-for="(card, index) in notificationCards"
                     :key="index"
