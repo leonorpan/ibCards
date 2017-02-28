@@ -1,32 +1,34 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
-    <div v-if="notificationCards && notificationCards.length > 0" class="cards">
-        <transition-group tag="div" class="cardTransition">
-            <notification-card
-                    v-for="(card, index) in notificationCards"
-                    :key="index"
-                    :user="card.user"
-                    :description="card.description"
-                    :requires-decision="card.requiresDecision"
-                    :position="index"
-                    v-on:confirm="confirmCard"
-                    v-on:reject="rejectCard"
-                    v-on:bringToTop="bringToTop(index)"
-                    v-on:swipedCard="swipeCard"
-                    :length="notificationCards.length"
-                    :title="card.title">
-            </notification-card>
-        </transition-group>
-    </div>
-    <div v-else style="text-align: center; min-height: 200px;">
-        <div class="cardNumber">
-            <button class="button-min" v-on:click="cards--">-</button>
-            <span>{{cards}}</span>
-            <button class="button-min" v-on:click="cards++">+</button>
+    <transition name="stack">
+        <div v-if="notificationCards && notificationCards.length > 0" class="cards">
+            <transition-group tag="div" class="cardTransition">
+                <notification-card
+                        v-for="(card, index) in notificationCards"
+                        :key="index"
+                        :user="card.user"
+                        :description="card.description"
+                        :requires-decision="card.requiresDecision"
+                        :position="index"
+                        v-on:confirm="confirmCard"
+                        v-on:reject="rejectCard"
+                        v-on:bringToTop="bringToTop(index)"
+                        v-on:swipedCard="swipeCard"
+                        :length="notificationCards.length"
+                        :title="card.title">
+                </notification-card>
+            </transition-group>
         </div>
-        <button v-once v-on:click="showCards()" class="btn button">{{ buttonText }}</button>
-        <p v-if="cards < 0">Ehm, I cannot show a positive number of cards :)</p>
-        <p v-if="notificationCards">Confirmed: {{confirmed}} Rejected: {{rejected}}</p>
-    </div>
+        <div v-else style="text-align: center; min-height: 200px;">
+            <div class="cardNumber">
+                <button class="button-min" v-on:click="cards--">-</button>
+                <span>{{cards}}</span>
+                <button class="button-min" v-on:click="cards++">+</button>
+            </div>
+            <button v-once v-on:click="showCards()" class="btn button">{{ buttonText }}</button>
+            <p v-if="cards < 0">Ehm, I cannot show a positive number of cards :)</p>
+            <p v-if="notificationCards">Confirmed: {{confirmed}} Rejected: {{rejected}}</p>
+        </div>
+    </transition>
 </template>
 
 <script>
@@ -73,7 +75,6 @@
                 }
             },
             bringToTop: function (index) {
-                console.log('clicked')
                 if (index === this.notificationCards.length - 1) return
                 const element = this.notificationCards[index]
                 this.notificationCards.splice(index, 1)
@@ -107,24 +108,21 @@
     .cards {
         width: 300px;
         height: 300px;
-
-    .cards-wrapper {
-        position: absolute;
-    }
     }
 
     .cardNumber {
         margin-bottom: 20px;
-    button {
-        color: white;
-        background-color: $ibBlue;
-        border: none;
-    }
 
-    span {
-        font-size: 20px;
-        padding-left: 10px;
-        padding-right: 10px;
+        button {
+            color: white;
+            background-color: $ibBlue;
+            border: none;
+        }
+
+        span {
+            font-size: 20px;
+            padding-left: 10px;
+            padding-right: 10px;
         }
     }
 

@@ -1,5 +1,4 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
-    <!-- ... -->
     <div class="card" :style="cardPositioning" v-swipe="swipeCard">
         <div class="header" :style="cardHeader" v-on:click="$emit('bringToTop')">
             <span>{{title}}</span>
