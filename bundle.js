@@ -9854,7 +9854,6 @@ exports.default = _vue2.default.directive('swipe', {
         var hammertime = new Hammer(el);
         hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
         hammertime.on('swipe', function (ev) {
-            console.log(ev);
             ev.preventDefault();
             binding.value(ev.direction);
         });
