@@ -6,7 +6,7 @@ const CardData = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent erat diam, luctus eget nunc eget, viverra luctus augue',
         'Nunc et magna vitae enim faucibus dictum. Nulla at tellus turpis. Pellentesque ornare.'],
     usersNames: ['Pink Royale', 'Pork Royale', 'Pink Pork'],
-    userImages: ['http://s23.postimg.org/ssdslelvv/ib_pink_Royale.png', 'https://s14.postimg.org/7cy2i2vch/ib_pork_Royale.png'],
+    userImages: ['https://s23.postimg.org/ssdslelvv/ib_pink_Royale.png', 'https://s14.postimg.org/7cy2i2vch/ib_pork_Royale.png'],
     userTypes: ['artist', 'studio', 'monkey'],
 }
 
