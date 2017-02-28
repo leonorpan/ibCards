@@ -6,7 +6,6 @@ export default Vue.directive('swipe', {
         const hammertime = new Hammer(el);
         hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL })
         hammertime.on('swipe', (ev) => {
-            console.log(ev)
             ev.preventDefault()
             binding.value(ev.direction)
         })
